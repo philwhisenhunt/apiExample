@@ -30,11 +30,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         // echo 'last name is ' . $lastName . "\n";
 
-        foreach ($content as $piece){
-            
-            fputcsv($file, explode(',', $piece));
+        // foreach ($content as $piece){
 
-        }
+            // fputcsv($file, explode(',', $piece));
+            fputcsv($file, $content);
+
+
+        // }
 
 
 
