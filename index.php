@@ -42,9 +42,9 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         // }
         
         while(($data = fgetcsv($file, 1000, ",")) !== FALSE) {
-            foreach($data as $pieceOfData){
-                echo $pieceOfData . "\n";
-            }
+                //trying to encode to JSON
+                echo json_encode($data) . "\n";
+          
             // print_r($data);
         }
 
