@@ -12,6 +12,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //what does this line do?
     //My guess is that 
     $content = json_decode(file_get_contents("php://input"), true);
+    echo 'The $content is:  ';
     print_r($content);
 
     if($content["firstName"]){
@@ -21,13 +22,24 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $file = fopen("apiExample.csv","a");
        
 
-        //name the file
-        $firstName = $content['firstName'];
-        $lastName = $content['lastName'];
+        //assign the content to a variable
+        // $firstName = $content['firstName'];
+        // $lastName = $content['lastName'];
+
+        // echo 'first name is ' . $firstName . "\n";
+
+        // echo 'last name is ' . $lastName . "\n";
+
+        foreach ($content as $piece){
+            
+            fputcsv($file, explode(',', $piece));
+
+        }
+
 
 
         //write to the file
-        fputcsv($file, explode(',', $firstName));
+        // fputcsv($file, explode(',', $content));
 
         //close the file
         fclose($file);
