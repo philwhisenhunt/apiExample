@@ -11,59 +11,24 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     //what does this line do?
     //My guess is that 
-  
 
-    var_dump(file_get_contents("php://input"));
-    die();
-    
+    //gets the entire contents of a file, converts it to JSON, and assigns it to $content
     $content = json_decode(file_get_contents("php://input"), true);
-    echo 'The $content is:  ';
-    print_r($content);
+    // echo 'The $content is:  ';
+    // print_r($content);
 
     if($content["firstName"]){
-        //write to CSV
 
         //open the file and make it writeable
         $file = fopen("apiExample.csv","a");
-       
 
-        //assign the content to a variable
-        // $firstName = $content['firstName'];
-        // $lastName = $content['lastName'];
-
-        // echo 'first name is ' . $firstName . "\n";
-
-        // echo 'last name is ' . $lastName . "\n";
-
-        // foreach ($content as $piece){
-
-            // fputcsv($file, explode(',', $piece));
-            fputcsv($file, $content);
-
-
-        // }
-
-
-
-        //write to the file
-        // fputcsv($file, explode(',', $content));
+        fputcsv($file, $content);
 
         //close the file
         fclose($file);
 
     
     }
-
-    // if($content["lastName"]){
-
-    //     $file = fopen("apiExample.csv", "w");
-
-    //     $lastName = $content['lastName'];
-
-    //     fputcsv($file, explode(',', $lastName));
-
-    //     fclose($file);
-    // }
     
     else{
         //respond with 400 error
