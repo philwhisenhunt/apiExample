@@ -46,32 +46,9 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
         
         while(($data = fgetcsv($file, 1000, ",")) !== FALSE) {
-                //trying to encode to JSON
-
-
-                // print_r($data);
 
                 $namesList[$data[0]] = $data[1];
-                //set up assoc array with first and last
-                //append it to the reg array
-
-
-                // $array = array_map("str_getcsv", $data);
-                //does it have something to do with not being an object?
-
-                // $nowJSON = json_encode($array);
-                // print_r($array);
-                // echo $nowJSON;
-
-
-
-                // echo json_encode($array) . "\n";
-                // echo "The array is: \n";
-                // print_r($array);
-                //perhaps use array map?
-                // echo json_encode($array) . "\n";
-          
-            // print_r($data);
+               
         }
         // print_r($namesList);
         echo json_encode($namesList);
