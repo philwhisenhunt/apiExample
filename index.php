@@ -1,7 +1,7 @@
 <?php
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    
+
     //gets the entire contents of a file, converts it to JSON, and assigns it to $content
     $content = json_decode(file_get_contents("php://input"), true);
    
@@ -34,10 +34,22 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
     if(file_exists("apiExample.csv")){
         //return the names in the csv file
         $file = fopen("apiExample.csv","r");
-        $returnedArray = fgetcsv($file);
+
+        // $returnedArray = fgetcsv($file);
+
+        // foreach ($returnedArray as $piece){
+        //     echo $piece;
+        // }
+        
+        while(($data = fgetcsv($file, 1000, ",")) !== FALSE) {
+            foreach($data as $pieceOfData){
+                echo $pieceOfData . "\n";
+            }
+            // print_r($data);
+        }
 
         //respond with the entries under name
-        print_r($returnedArray);
+        // print_r($returnedArray);
         fclose($file);
 
     }
