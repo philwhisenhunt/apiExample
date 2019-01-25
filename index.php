@@ -11,6 +11,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     //what does this line do?
     //My guess is that 
+  
+
+    var_dump(file_get_contents("php://input"));
+    die();
+    
     $content = json_decode(file_get_contents("php://input"), true);
     echo 'The $content is:  ';
     print_r($content);
