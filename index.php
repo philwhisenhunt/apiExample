@@ -43,23 +43,48 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         // }
 
         $namesList= [];
+        $megaArray = [];
 
-        
+        fgetcsv($file);
         while(($data = fgetcsv($file, 1000, ",")) !== FALSE) {
 
+                // if($row === 1){
+                //     $row++;
+                //     continue; //skip the first line and move along
+                // }
                 // $namesList[$data[0]] = $data[1];
-                $namesList[] = $data[1];
+                // $namesList[] = $data[1];
+                //or, perhaps encode the data, then assign it to an array?
+                // $namesList[] = json_encode($data[1]);
+
+                // $namesList[$data[0]] = json_encode($data[1]);
+
+                // print_r($data);
+                // $namesList[] = json_encode($data);
+            
+                $namesList['firstName'] = $data[0];
+                $namesList['lastName'] = $data[1];
+                // print_r($namesList);
+                $megaArray[] = $namesList;
+
+                //create megaArray?
+
 
                
         }
         // print_r($namesList);
+        // print_r($megaArray);
+        echo json_encode($megaArray);
 
         // foreach($namesList as $item){
-        //     json_encode($item);
+        //    echo json_encode($namesList);
 
         // }
+
+        // print_r($namesList);
+
         // echo json_encode($namesList);
-        print_r($namesList);
+        
 
         //do the json encode on the entire array, send it back as one whole thing. 
 
