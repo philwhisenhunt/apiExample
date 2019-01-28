@@ -52,11 +52,11 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         }
         // print_r($namesList);
 
-        foreach($namesList as $item){
-            json_encode($item);
+        // foreach($namesList as $item){
+        //     json_encode($item);
 
-        }
-        // echo json_encode($namesList);
+        // }
+        echo json_encode($namesList);
 
         //do the json encode on the entire array, send it back as one whole thing. 
 
