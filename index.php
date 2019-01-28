@@ -47,7 +47,9 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         
         while(($data = fgetcsv($file, 1000, ",")) !== FALSE) {
 
-                $namesList[$data[0]] = $data[1];
+                // $namesList[$data[0]] = $data[1];
+                $namesList[] = $data[1];
+
                
         }
         // print_r($namesList);
@@ -56,7 +58,8 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
         //     json_encode($item);
 
         // }
-        echo json_encode($namesList);
+        // echo json_encode($namesList);
+        print_r($namesList);
 
         //do the json encode on the entire array, send it back as one whole thing. 
 
