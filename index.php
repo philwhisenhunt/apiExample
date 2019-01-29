@@ -24,6 +24,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     else{
         //HTTP error
        http_response_code(400);
+       echo "Input is not correct";
 
     }
 
@@ -34,30 +35,26 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
     if(file_exists("mimic.csv")){
         
-        echo "GETTT";
+        // echo "GETTT";
         $file = fopen('mimic.csv', 'r');
 
         $arrayMaker = [];
         
         fgetcsv($file);
-        
+
         while(($line = fgetcsv($file, 1000, ",")) !== false){
-            $arrayMaker[] = ($line);
+            $arrayMaker[] = $line;
         }
         
         fclose($file);
         print_r($arrayMaker);
         
-            // $content = fgetcsv($file, 1000);
-        
-
-
-         // print_r($content);
 }
 
 else{
         //Return 404 error and say why missing, in JSON. 
     http_response_code(404);
+    echo "The file is missing";
 
     }
 
