@@ -1,33 +1,43 @@
 <?php
 
-if($_REQUEST == $_POST){
-    if($_POST['firstName']){
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+    //PHP doesn't know how to handle JSON in $_POST, so we have to get the contents from the input 
+    //and decode it
+    $content = json_decode(file_get_contents("php://input"), true);
+    if($content['firstName']){
         //respond with the name
-        echo "firstName received";
+        // echo "firstName received";
+        print_r($content);
         //
+
+        $file = fopen("mimic.csv", "w");
+
+        fputcsv($file, $content);
     }
 
-    elseif($_POST['lastName']){
+    if($content['lastName']){
+        echo "lastName received";
 
     }
 
     else{
         //HTTP error
-       echo http_response_code(400);
+       http_response_code(400);
 
     }
 
 
 }
 
-if($_REQUEST == $_GET){
+if($_SERVER['REQUEST_METHOD'] === 'GET'){
     if($_GET){
         echo "get Request";
     }
 
     else{
         //Return 404 error and say why missing, in JSON. 
-        echo http_response_code(404);
+       http_response_code(404);
 
     }
 
