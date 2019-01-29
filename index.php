@@ -31,14 +31,26 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
-    if($_GET){
-        echo "get Request";
-    }
 
-    else{
-        //Return 404 error and say why missing, in JSON. 
-       http_response_code(404);
+// echo "GETTT";
+$arrayMaker = [];
+$file = fopen('mimic.csv', 'r');
 
-    }
-
+fgetcsv($file);
+while($line = fgetcsv($file, 1000, ",") !== false){
+    $arrayMaker[] = ($line);
 }
+
+fclose($file);
+print_r($arrayMaker);
+
+    // $content = fgetcsv($file, 1000);
+    // print_r($content);
+}
+
+else{
+        //Return 404 error and say why missing, in JSON. 
+    http_response_code(404);
+
+    }
+
