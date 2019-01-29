@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         print_r($content);
         //
 
-        $file = fopen("mimic.csv", "w");
+        $file = fopen("mimic.csv", "a");
 
         fputcsv($file, $content);
     }
