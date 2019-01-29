@@ -32,20 +32,27 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-// echo "GETTT";
-$arrayMaker = [];
-$file = fopen('mimic.csv', 'r');
+    if(file_exists("mimic.csv")){
+        
+        echo "GETTT";
+        $file = fopen('mimic.csv', 'r');
 
-fgetcsv($file);
-while($line = fgetcsv($file, 1000, ",") !== false){
-    $arrayMaker[] = ($line);
-}
+        $arrayMaker = [];
+        
+        fgetcsv($file);
+        
+        while(($line = fgetcsv($file, 1000, ",")) !== false){
+            $arrayMaker[] = ($line);
+        }
+        
+        fclose($file);
+        print_r($arrayMaker);
+        
+            // $content = fgetcsv($file, 1000);
+        
 
-fclose($file);
-print_r($arrayMaker);
 
-    // $content = fgetcsv($file, 1000);
-    // print_r($content);
+         // print_r($content);
 }
 
 else{
@@ -54,3 +61,4 @@ else{
 
     }
 
+}
