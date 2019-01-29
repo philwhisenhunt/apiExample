@@ -3,7 +3,7 @@
 if($_REQUEST == $_POST){
     if($_POST['firstName']){
         //respond with the name
-
+        echo "firstName received";
         //
     }
 
@@ -20,9 +20,9 @@ if($_REQUEST == $_POST){
 
 }
 
-if($_REQUEST == $GET){
+if($_REQUEST == $_GET){
     if($_GET){
-
+        echo "get Request";
     }
 
     else{
